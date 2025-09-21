@@ -1,0 +1,244 @@
+/* --- General Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #e0e0e0;
+  padding-top: 80px; /* offset for fixed topbar */
+}
+
+/* --- Top Navbar --- */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #333;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Left Section: Signin/Signup --- */
+
+.topbar .auth-top {
+  display: flex;
+  gap: 12px;
+}
+
+.auth-top a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 8px 16px;
+  display: none;
+  border-radius: 8px;
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  transition: all 0.3s ease;
+}
+
+.auth-top a:hover {
+  color: #66ccff;
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+/* --- Center Section: Navigation --- */
+.topbar-center {
+  display: flex;
+  gap: 25px;
+  flex: 1;
+  justify-content: center;
+}
+
+.topbar-center a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.topbar-center a:hover {
+  background-color: #2b2b2b;
+  color: #66ccff;
+  transform: translateY(-2px);
+}
+
+/* --- Right Section: Welcome Message --- */
+.topbar h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: right;
+}
+
+.topbar span {
+  color: #66ccff;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+/* --- Flip Card Container --- */
+.flip-container {
+  perspective: 1000px;
+  width: 360px;
+  margin: 60px auto;
+}
+
+.flip-card {
+  width: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #1f1f1f;
+  color: #fff;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+/* --- Form Styling --- */
+form h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+form p {
+  margin-bottom: 20px;
+  color: #bbb;
+  text-align: center;
+}
+
+form input {
+  background: #2b2b2b;
+  border: none;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  color: #fff;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+form input:focus {
+  outline: 2px solid #66ccff;
+  background-color: #333;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  background-color: #66ccff;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #5599cc;
+  transform: scale(1.03);
+}
+
+.toggle {
+  color: #aaa;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: #66ccff;
+}
+
+/* --- Main Content --- */
+main,
+.main-content {
+  flex: 1; /* takes remaining space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* --- Footer --- */
+.site-footer {
+  text-align: center;
+  padding: 15px 20px;
+  color: #888;
+  font-size: 0.9rem;
+  border-top: 1px solid #333;
+  background-color: #1e1e1e;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+  }
+  .topbar-center {
+    margin: 10px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .topbar h1 {
+    text-align: center;
+    margin-top: 8px;
+  }
+  .flip-container {
+    width: 90%;
+    margin: 30px auto;
+  }
+  .main-content {
+    padding: 20px;
+  }
+}

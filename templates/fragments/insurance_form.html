@@ -1,0 +1,157 @@
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .main-content {
+    margin-top: 80px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    gap: 20px; /* space between cards */
+    align-items: center; /* center horizontally */
+  }
+
+  .insurance-card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%; /* wide cards, responsive */
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .insurance-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  }
+
+  .insurance-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+
+  .insurance-card p {
+    font-size: 1rem;
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .insurance-card button {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .insurance-card button:hover {
+    background-color: #3a3a3a;
+    transform: scale(1.05);
+  }
+
+  .site-footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 12px;
+    background-color: #1a1a1a;
+    color: #bbbbbb;
+    font-size: 0.9rem;
+  }
+</style>
+
+<div class="main-content">
+  <div class="insurance-card">
+    <h2>Medical Insurance</h2>
+    <p>
+      Protect your health and well-being with our comprehensive medical
+      insurance plans. We offer a variety of options to suit your needs and
+      budget, including coverage for doctor visits, hospital stays, and
+      prescription medications.
+    </p>
+    <button onclick="showMedicalPlans()">View Medical Plans</button>
+  </div>
+
+  <div class="insurance-card">
+    <h2>Automobile Insurance</h2>
+    <p>
+      Drive with confidence knowing you're protected with our automobile
+      insurance. We provide coverage for liability, collision, and comprehensive
+      damage, ensuring you're safe on the road.
+    </p>
+    <button onclick="showAutoPlans()">View Auto Plans</button>
+  </div>
+
+  <div class="insurance-card">
+    <h2>Home Insurance</h2>
+    <p>
+      Safeguard your home and belongings with our reliable home insurance
+      policies. We offer coverage for damage caused by fire, theft, natural
+      disasters, and more, giving you peace of mind.
+    </p>
+    <button onclick="showHomePlans()">View Home Plans</button>
+  </div>
+
+  <div class="insurance-card">
+    <h2>Pet Insurance</h2>
+    <p>
+      Ensure your furry friends receive the best care with our pet insurance. We
+      cover veterinary expenses, including surgeries, treatments, and
+      medications, so you can focus on their well-being.
+    </p>
+    <button onclick="showPetPlans()">View Pet Plans</button>
+  </div>
+  <script>
+    function showAlertAndOpenWindow(message, url) {
+      const alertDiv = document.createElement("div");
+      alertDiv.className = "alert";
+      alertDiv.textContent = message;
+      document.body.appendChild(alertDiv);
+
+      setTimeout(() => {
+        alertDiv.remove();
+        window.open(url, "_blank");
+      }, 2000); // 2 seconds
+    }
+    function showMedicalPlans() {
+      showAlertAndOpenWindow(
+        "Redirecting to Medical Insurance Plans",
+        "https://www.sbilife.co.in/"
+      );
+    }
+
+    function showAutoPlans() {
+      showAlertAndOpenWindow(
+        "Redirecting to Auto Insurance Plans...",
+        "https://www.sbilife.co.in/"
+      );
+    }
+
+    function showHomePlans() {
+      showAlertAndOpenWindow(
+        "Redirecting to Home Insurance Plans...",
+        "https://www.sbilife.co.in/"
+      );
+    }
+
+    function showPetPlans() {
+      showAlertAndOpenWindow(
+        "Redirecting to Pet Insurance Plans...",
+        "https://www.sbilife.co.in/"
+      );
+    }
+  </script>
+</div>

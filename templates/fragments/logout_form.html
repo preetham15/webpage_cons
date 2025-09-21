@@ -1,0 +1,35 @@
+{% block content %}
+
+<body>
+  <div class="success-card">
+    <h1>Login Successful!</h1>
+    <p>Welcome, <span id="welcome-user"></span>!</p>
+    <button class="btn btn-dashboard" onclick="goToDashboard()">
+      Go to Dashboard
+    </button>
+    <button class="btn btn-logout" onclick="logout()">Logout</button>
+    <footer class="site-footer">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </footer>
+  </div>
+
+  <script>
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+      document.getElementById("welcome-user").textContent = loggedInUser;
+    } else {
+      window.location.href = "login.html"; // Not logged in
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+
+    function goToDashboard() {
+      window.location.href = "../templates/home.html"; // Adjust path as needed
+    }
+  </script>
+</body>
+{% endblock %}

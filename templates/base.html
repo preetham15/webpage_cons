@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+
+    <!-- Google Fonts and FontAwesome -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base.css') }}"
+    />
+  </head>
+  <body>
+      </div>
+      <div class="topbar">
+        <h1><a href="{{ url_for('home') }}"
+          ><i class="fas fa-calendar-check"></i> Welcome </a
+        > <span id="username-display"></span></h1>
+        <nav class="topbar-center">
+          <a href="{{ url_for('appointment') }}"
+            ><i class="fas fa-calendar-check"></i> Appointments</a
+          >
+          <a href="{{ url_for('subscription') }}"
+            ><i class="fas fa-shield-alt"></i> Subscription</a
+          >
+          <a href="{{ url_for('contact') }}"
+            ><i class="fas fa-envelope"></i> Contact</a
+          >
+          <a href="{{ url_for('discussion') }}"
+            ><i class="fas fa-comments"></i> Discussions</a
+          >
+          <a href="{{ url_for('insurance') }}"
+            ><i class="fas fa-shield-heart"></i> Insurance</a
+          >
+          <a href="{{ url_for('careers') }}"
+            ><i class="fas fa-briefcase"></i> Careers</a
+          >
+        </nav>
+        <div class="auth-top d-flex flex-row gap-2" id="authTop">
+              {% if user %}
+                Hello, {{ user.username }} | <a href="/logout">Logout</a>
+              {% else %}
+              <a href="{{ url_for('login') }}" class="login-btn" id="loginBtn">Signin</a>
+              {% endif %}  
+        </div>
+    </div>
+    <main>{% block content %} {% endblock %}
+    </main>
+    <footer >
+      <div class ="quick-links" style = "display: inline-block; align-items:center;">
+            <li></li><p>quick links</p>
+            <li><a href="{{ url_for('appointment') }}"> Appointments</a></li>
+            <li><a href="{{ url_for('subscription') }}"> Subscription</a></li>
+            <li><a href="{{ url_for('contact') }}"> Contact</a></li>
+            <li><a href="{{ url_for('discussion') }}"> Discussions</a></li>
+            <li><a href="{{ url_for('insurance') }}">Insurance</a></li>
+            <li><a href="{{ url_for('careers') }}"> Careers</a></li>
+
+
+      </div>
+      <div class="site-footer mt-5">  &copy; 2025 Preetham's Dashboard. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>

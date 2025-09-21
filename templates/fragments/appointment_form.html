@@ -1,0 +1,204 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* --- Container & Layout --- */
+  .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+  /* --- Appointment Card Styling --- */
+  .appointment-container,
+  .appointment-list {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .appointment-container:hover,
+  .appointment-list:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* --- Headings --- */
+  h1,
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  /* --- Forms Styling --- */
+  form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #ccc;
+  }
+
+  form input[type="date"],
+  form input[type="time"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  form input:focus,
+  form select:focus,
+  form textarea:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Submit Button */
+  form input[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #00ffe7;
+    color: #121212;
+    transition: all 0.3s ease;
+  }
+
+  form input[type="submit"]:hover {
+    background-color: #ff6ec4;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* --- Comment Section --- */
+  .comment-form {
+    margin-top: 15px;
+  }
+
+  .comment-form h3 {
+    margin-bottom: 10px;
+    color: #00ffe7;
+  }
+
+  /* --- Appointment List --- */
+  #appointments-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  #appointments-list li {
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  #appointments-list li:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+  }
+
+  /* --- Error Messages --- */
+  .error-message {
+    color: #ff3e9d;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  /* --- Main Content --- */
+  .main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+
+    .appointment-container,
+    .appointment-list {
+      padding: 20px;
+    }
+  }
+</style>
+
+<!-- Main Content -->
+<main class="main-content container mt-5 pt-5">
+  <div class="appointment-container">
+    <h2>Your Appointments</h2>
+    <ul id="appointments-list"></ul>
+  </div>
+  <div class="appointment-list mt-5">
+    <h2>Book Appointment</h2>
+    <div id="error-message" class="error-message"></div>
+    <form id="appointment-form">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="time">Time:</label>
+      <input type="time" id="time" name="time" required />
+
+      <label for="service">Service:</label>
+      <select id="service" name="service" required>
+        <option value="">Select Service</option>
+        <option value="service1">Service 1</option>
+        <option value="service2">Service 2</option>
+        <option value="service3">Service 3</option>
+      </select>
+
+      <div class="comment-form">
+        <h3>Comments:</h3>
+        <textarea
+          id="appointmentComments"
+          placeholder="Add comments..."
+        ></textarea>
+      </div>
+
+      <input type="submit" value="Book Appointment" />
+    </form>
+  </div>
+</main>
+<script>
+  function logout() {
+    alert("Logged out successfully!");
+  }
+</script>
