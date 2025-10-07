@@ -10,13 +10,13 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-color: #121212;
   color: #e0e0e0;
   padding-top: 80px; /* offset for fixed topbar */
 }
 
-/* --- Top Navbar --- */
-
+/* --- Topbar Layout --- */
 .topbar {
   position: fixed;
   top: 0;
@@ -30,69 +30,134 @@ body {
   padding: 0 30px;
   border-bottom: 1px solid #333;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  animation: float 6s ease-in-out infinite;
 }
 
-/* --- Left Section: Signin/Signup --- */
-
-.topbar .auth-top {
-  display: flex;
-  gap: 12px;
-}
-
-.auth-top a {
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: 500;
-  padding: 8px 16px;
-  display: none;
-  border-radius: 8px;
-  background-color: #2b2b2b;
-  border: 1px solid #444;
-  transition: all 0.3s ease;
-}
-
-.auth-top a:hover {
-  color: #66ccff;
-  background-color: #333;
-  transform: translateY(-2px);
-}
-
-/* --- Center Section: Navigation --- */
-.topbar-center {
-  display: flex;
-  gap: 25px;
+.topbar-left {
   flex: 1;
-  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
-.topbar-center a {
-  color: #ffffff;
+.topbar-left .logo {
+  color: #66ccff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.topbar-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  margin-right: -60px;
+}
+
+.topbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+/* --- Curved center nav block --- */
+.nav-capsule {
+  background: rgba(255, 255, 255, 0.12); /* makes separation visible */
+  backdrop-filter: blur(8px); /* glass effect */
+  border-radius: 40px;
+  padding: 8px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  gap: 20px;
+}
+
+.nav-capsule a {
+  display: flex; /* align icon + text */
+  align-items: center;
+  gap: 6px;
+  color: #e0e0e0;
   text-decoration: none;
   font-weight: 500;
   padding: 8px 12px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  border-radius: 25px;
+  transition: 0.3s;
 }
 
-.topbar-center a:hover {
-  background-color: #2b2b2b;
+.nav-capsule a:hover {
+  background: rgba(102, 204, 255, 0.1);
   color: #66ccff;
   transform: translateY(-2px);
 }
 
-/* --- Right Section: Welcome Message --- */
-.topbar h1 {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: right;
+/* --- Signup button --- */
+.signup-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #3b82f6;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: 0.3s ease;
 }
 
-.topbar span {
+.signup-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* --- Hamburger icon style --- */
+.hamburger-toggle {
+  display: none; /* Hidden by default on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.hamburger-line {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+}
+
+/* --- Mobile nav hidden by default with transition --- */
+.mobile-nav {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  position: absolute;
+  top: 70px; /* match .topbar height */
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  border-bottom: 1px solid #333;
+  z-index: 999;
+}
+
+.mobile-nav.is-open {
+  max-height: 500px; /* large enough to fit links */
+  opacity: 1;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  background: #333;
   color: #66ccff;
-  font-weight: 600;
-  margin-left: 6px;
 }
 
 /* --- Flip Card Container --- */
@@ -209,13 +274,80 @@ main,
 }
 
 /* --- Footer --- */
-.site-footer {
-  text-align: center;
-  padding: 15px 20px;
-  color: #888;
-  font-size: 0.9rem;
-  border-top: 1px solid #333;
+.footer {
   background-color: #1e1e1e;
+  color: #cbd5e1;
+  padding: 3rem 2rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-container {
+  display: flex;
+  flex-direction: column; /* Stack items top to bottom */
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  text-align: center; /* Center the brand at the top */
+  margin-bottom: 2rem;
+}
+
+.footer-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.footer h2,
+.footer h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #3b82f6;
+  padding-left: 5px;
+}
+
+.footer-social a {
+  margin-right: 12px;
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  transition: 0.3s;
+}
+
+.footer-social a:hover {
+  color: #3b82f6;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #333;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
 }
 
 /* --- Responsive --- */
@@ -230,10 +362,6 @@ main,
     justify-content: center;
     flex-wrap: wrap;
   }
-  .topbar h1 {
-    text-align: center;
-    margin-top: 8px;
-  }
   .flip-container {
     width: 90%;
     margin: 30px auto;
@@ -241,4 +369,67 @@ main,
   .main-content {
     padding: 20px;
   }
+  /* Hide desktop nav capsule and show hamburger */
+  .topbar-center {
+    display: none;
+  }
+  .hamburger-toggle {
+    display: block;
+  }
+}
+
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* --- Loading Animation --- */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.loading {
+  animation: shimmer 1.5s ease-in-out infinite;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+}
+
+/* --- Floating Elements Animation --- */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* --- Glass Morphism Effect --- */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+/* --- Professional Gradient Backgrounds --- */
+.gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }

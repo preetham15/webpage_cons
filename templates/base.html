@@ -21,55 +21,167 @@
     />
   </head>
   <body>
+    <div class="topbar">
+      <!-- Left: Logo -->
+      <div class="topbar-left">
+        <a href="{{ url_for('home') }}" class="logo">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
       </div>
-      <div class="topbar">
-        <h1><a href="{{ url_for('home') }}"
-          ><i class="fas fa-calendar-check"></i> Welcome </a
-        > <span id="username-display"></span></h1>
-        <nav class="topbar-center">
+
+      <!-- Center: Navigation Block -->
+      <nav class="topbar-center nav-capsule">
+        <a href="{{ url_for('appointment') }}"
+          ><i class="fas fa-calendar-check"></i> Appointments</a
+        >
+        <a href="{{ url_for('subscription') }}"
+          ><i class="fas fa-shield-alt"></i> Subscription</a
+        >
+        <a href="{{ url_for('contact') }}"
+          ><i class="fas fa-envelope"></i> Contact</a
+        >
+        <a href="{{ url_for('discussion') }}"
+          ><i class="fas fa-comments"></i> Discussions</a
+        >
+        <a href="{{ url_for('insurance') }}"
+          ><i class="fas fa-shield-heart"></i> Insurance</a
+        >
+        <a href="{{ url_for('careers') }}"
+          ><i class="fas fa-briefcase"></i> Careers</a
+        >
+      </nav>
+
+      <!-- Right: Signup + Toggle -->
+      <div class="topbar-right">
+        <div class="auth-top d-flex flex-row gap-2" id="authTop">
+          {% if user %} Hello, {{ user.username }} |
+          <a href="/logout">Logout</a>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="login-btn" id="loginBtn"
+            >Signin</a
+          >
+          {% endif %}
+        </div>
+        <button
+          class="hamburger-toggle"
+          aria-controls="mobile-nav"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation (hidden by default) -->
+    <nav class="mobile-nav" id="mobile-nav">
+      <ul>
+        <li>
           <a href="{{ url_for('appointment') }}"
             ><i class="fas fa-calendar-check"></i> Appointments</a
           >
+        </li>
+        <li>
           <a href="{{ url_for('subscription') }}"
             ><i class="fas fa-shield-alt"></i> Subscription</a
           >
+        </li>
+        <li>
           <a href="{{ url_for('contact') }}"
             ><i class="fas fa-envelope"></i> Contact</a
           >
+        </li>
+        <li>
           <a href="{{ url_for('discussion') }}"
             ><i class="fas fa-comments"></i> Discussions</a
           >
+        </li>
+        <li>
           <a href="{{ url_for('insurance') }}"
             ><i class="fas fa-shield-heart"></i> Insurance</a
           >
+        </li>
+        <li>
           <a href="{{ url_for('careers') }}"
             ><i class="fas fa-briefcase"></i> Careers</a
           >
-        </nav>
-        <div class="auth-top d-flex flex-row gap-2" id="authTop">
-              {% if user %}
-                Hello, {{ user.username }} | <a href="/logout">Logout</a>
-              {% else %}
-              <a href="{{ url_for('login') }}" class="login-btn" id="loginBtn">Signin</a>
-              {% endif %}  
+        </li>
+      </ul>
+    </nav>
+
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Brand / Logo at the top -->
+        <div class="footer-brand">
+          <h2>brand name and logo</h2>
+          <a href="{{ url_for('contact') }}"
+            ><i class="fas fa-envelope"></i> Get Started
+          </a>
         </div>
-    </div>
-    <main>{% block content %} {% endblock %}
-    </main>
-    <footer >
-      <div class ="quick-links" style = "display: inline-block; align-items:center;">
-            <li></li><p>quick links</p>
-            <li><a href="{{ url_for('appointment') }}"> Appointments</a></li>
-            <li><a href="{{ url_for('subscription') }}"> Subscription</a></li>
-            <li><a href="{{ url_for('contact') }}"> Contact</a></li>
-            <li><a href="{{ url_for('discussion') }}"> Discussions</a></li>
-            <li><a href="{{ url_for('insurance') }}">Insurance</a></li>
-            <li><a href="{{ url_for('careers') }}"> Careers</a></li>
 
+        <!-- Other sections below in row -->
+        <div class="footer-sections">
+          <!-- Quick Links -->
+          <div class="footer-links">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="{{ url_for('careers') }}">About Us</a></li>
+              <li><a href="{{ url_for('careers') }}">Careers</a></li>
+            </ul>
+          </div>
 
+          <!-- Contact Info -->
+          <div class="footer-contact">
+            <h3>Contact</h3>
+            <p><i class="fas fa-envelope"></i> mailid</p>
+            <p><i class="fas fa-phone"></i> contact details</p>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> location not yet decided
+            </p>
+          </div>
+          <div>
+            <!-- Social Media -->
+            <div class="footer-social">
+              <h3>Follow Us</h3>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="site-footer mt-5">  &copy; 2025 Preetham's Dashboard. All rights reserved.
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Preetham's Dashboard. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      const hamburgerToggle = document.querySelector(".hamburger-toggle");
+      const mobileNav = document.querySelector(".mobile-nav");
+
+      function closeMobileNav() {
+        mobileNav.classList.remove("is-open");
+        hamburgerToggle.setAttribute("aria-expanded", "false");
+      }
+
+      // Toggle menu on click
+      hamburgerToggle.addEventListener("click", () => {
+        const isExpanded =
+          hamburgerToggle.getAttribute("aria-expanded") === "true";
+        mobileNav.classList.toggle("is-open");
+        hamburgerToggle.setAttribute("aria-expanded", !isExpanded);
+      });
+
+      // Close mobile nav if screen resized above 768px
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          closeMobileNav();
+        }
+      });
+    </script>
   </body>
 </html>

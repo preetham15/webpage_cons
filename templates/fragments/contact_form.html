@@ -1,124 +1,161 @@
 <style>
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-/* Reset some defaults */
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background-color: #0c0c0c;
-  color: #ffffff;
-}
-.main-content {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-  padding-bottom: 20px; 
-}
-.row {
-  padding-bottom: 20px;
-}
-form {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-  padding: 30px;
-  border-radius: 16px;
-  max-width: 700px;
-  width: 100%;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Input & Textarea */
-form input,
-form textarea {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  color: #ffffff;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  outline: none;
-  transition: 0.3s ease;
-  width: 100%;
-}
-
-form input:focus,
-form textarea:focus {
-  border-color: #00fff7;
-  box-shadow: 0 0 10px #00fff7;
-}
-
-
-.name_contact {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-}
-
-@media (max-width: 768px) {
-  .name_contact {
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
     flex-direction: column;
   }
-}
 
-/* Submit Button */
-form button[type="submit"] {
-  background-color: #00fff7;
-  color: #000;
-  padding: 12px;
-  font-weight: bold;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
+  /* Reset some defaults */
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #0c0c0c;
+    color: #ffffff;
+  }
 
-form button[type="submit"]:hover {
-  background-color: #00e6d2;
-  box-shadow: 0 0 10px #00fff7;
-}
+  .main-content {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    padding-bottom: 20px;
+    gap: 40px; /* space between form and info block */
+    flex-wrap: wrap;
+  }
 
-/* Textarea placeholder styling */
-textarea::placeholder {
-  color: #80ffff;
-}
+  .contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 350px;
+    flex: 1;
+    backdrop-filter: blur(10px);
+  }
 
+  .contact-info h2 {
+    color: #00fff7;
+    margin-bottom: 16px;
+  }
+
+  .contact-info p {
+    line-height: 1.6;
+    color: #ffffff;
+  }
+
+  /* Form */
+  form {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 700px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Input & Textarea */
+  form input,
+  form textarea {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease;
+    width: 100%;
+  }
+
+  form input:focus,
+  form textarea:focus {
+    border-color: #00fff7;
+    box-shadow: 0 0 10px #00fff7;
+  }
+
+  .name_contact {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .name_contact {
+      flex-direction: column;
+    }
+    .main-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  /* Submit Button */
+  form button[type="submit"] {
+    background-color: #00fff7;
+    color: #000;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  form button[type="submit"]:hover {
+    background-color: #00e6d2;
+    box-shadow: 0 0 10px #00fff7;
+  }
+
+  /* Textarea placeholder styling */
+  textarea::placeholder {
+    color: #80ffff;
+  }
 </style>
-<main class="main-content container mt-5 pt-5">
 
-  <form action="/contact" method="post">
-    <div class="name_contact">
-    <input
-      type="text"
-      id="first_name"
-      name="first_name"
-      placeholder="First Name"
-      required
-    />
-    <input
-      type="text"
-      id="middle_name"
-      name="Middle_name"
-      placeholder="Middle Name"
-    />
-    <input
-      type="text"
-      id="last_name"
-      name="first_name"
-      placeholder="Last Name"
-      required
-    />
+<main class="main-content container mt-5 pt-5">
+  <!-- Side Info Block -->
+  <div class="contact-info">
+    <h2>Get in Touch</h2>
+    <p>
+      We’d love to hear from you! Reach out to learn more about our services,
+      collaborations, or any questions you may have.
+    </p>
   </div>
-  
+
+  <!-- Contact Form -->
+  <form action="/contact" method="post">
+    <h3 style="color: #00fff7">Your Name</h3>
+    <div class="name_contact">
+      <input
+        type="text"
+        id="first_name"
+        name="first_name"
+        placeholder="First Name"
+        required
+      />
+      <input
+        type="text"
+        id="middle_name"
+        name="middle_name"
+        placeholder="Middle Name"
+      />
+      <input
+        type="text"
+        id="last_name"
+        name="last_name"
+        placeholder="Last Name"
+        required
+      />
+    </div>
+    <h3 style="color: #00fff7">Email</h3>
     <input
       type="email"
       id="email"
@@ -126,22 +163,23 @@ textarea::placeholder {
       placeholder="email@gmail.com"
       required
     />
+    <h3 style="color: #00fff7">Subject</h3>
     <input
       type="text"
       id="subject"
       name="subject"
-      placeholder="Topic"
+      placeholder="Subject"
       required
     />
+    <h3 style="color: #00fff7">Your Message</h3>
     <textarea
       id="message"
       name="message"
       rows="5"
-      placeholder="Message Dont include Personal Information Such as Phone number"
+      placeholder="Your Message (Don't include personal information such as phone number)"
       required
     ></textarea>
+
     <button type="submit">Send Message</button>
   </form>
-</div>
-</div>
 </main>

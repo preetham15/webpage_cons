@@ -133,9 +133,7 @@
     <div id="application-error" class="error-message"></div>
     <form id="application-form" enctype="multipart/form-data">
       <div class="FL_name">
-        <input type="text" id="name" placeholder="First Name" required />
-        <input type="text" placeholder="Middle Name" />
-        <input type="text" placeholder="Last Name" required />
+        <input type="text" id="name" placeholder="Full Name" required />
       </div>
       <input type="email" placeholder="Email" required />
       <select id="role" required>
@@ -145,9 +143,20 @@
         <option value="Marketing Specialist">Marketing Specialist</option>
         <option value="Other">Other</option>
       </select>
-      <div class="CL_part">
-        <textarea id="coverLetter" placeholder="Cover Letter"></textarea>
-        <input type="file" id="resume" accept=".pdf,.doc,.docx" required />
+      <input
+        type="text"
+        id="role_name"
+        placeholder="if selected others mention the role name"
+      />
+      <div class="file_part">
+        <p>
+          Cover Letter
+          <input type="file" id="Cover letter" accept=".pdf,.doc,.docx" />
+        </p>
+        <p>
+          Resume
+          <input type="file" id="resume" accept=".pdf,.doc,.docx" required />
+        </p>
       </div>
       <input class="submit_btn" type="submit" value="Submit Application" />
     </form>

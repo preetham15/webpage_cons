@@ -155,9 +155,11 @@
 <div class="main-content">
   <!-- Subscription Plans (stacked vertically) -->
   <div id="planCards">
+    {% if not user.is_authenticated %}
     <div id="loginNotice" style="display: none">
       You need to login to buy a plan.
     </div>
+    {% endif %}
   </div>
 
   <!-- Payment Section -->
